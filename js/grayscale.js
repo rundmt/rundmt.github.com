@@ -29,3 +29,6 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
+$('.epoch').click(function(){
+  window.location.href = "https://en.wikipedia.org/wiki/Unix_time";
+})
