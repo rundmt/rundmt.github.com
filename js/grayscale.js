@@ -32,3 +32,5 @@ $('.navbar-collapse ul li a').click(function() {
 $('.epoch').click(function(){
   window.location.href = "https://en.wikipedia.org/wiki/Unix_time";
 })
+
+console.log("Looking for extras? Click EST. 644934600");
