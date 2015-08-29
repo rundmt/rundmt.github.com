@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Derek Tor Website</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+    <link>http://derektor.me/</link>
+    <atom:link href="http://derektor.me/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 29 Aug 2015 16:03:34 -0700</pubDate>
+    <lastBuildDate>Sat, 29 Aug 2015 16:03:34 -0700</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>First Post</title>
+        <description>&lt;p&gt;So I just made this Jekyll blog. I’ll be posting things here from now on. You can still look at my older posts &lt;a href=&quot;http://derekcodes.tumblr.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 28 May 2015 08:56:37 -0700</pubDate>
+        <link>http://derektor.me/jekyll/update/2015/05/28/first-post.html</link>
+        <guid isPermaLink="true">http://derektor.me/jekyll/update/2015/05/28/first-post.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>
