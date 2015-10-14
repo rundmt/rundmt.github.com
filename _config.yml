@@ -2,9 +2,7 @@
 title: Derek Tor Website
 email: derekmtor@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Personal Website of Derek Tor. Full Stack Web Developer. IOS Developer.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://derektor.me" # the base hostname & protocol for your site
 twitter_username: derektorq
