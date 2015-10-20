@@ -483,6 +483,12 @@ html, body {
     -webkit-box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22);
     -moz-box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22);
     box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22); }
+    @media screen and (max-width: 768px) {
+      .personal-info h1 {
+        font-size: 0.5em; } }
+    @media screen and (min-width: 1200px) {
+      .personal-info h1 {
+        font-size: 1.3em; } }
 
 .list-inline {
   list-style: none;

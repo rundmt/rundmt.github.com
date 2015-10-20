@@ -27,6 +27,10 @@ $content-width:    800px;
 
 $on-palm:          600px;
 $on-laptop:        800px;
+$break-small: 768px;
+$break-large: 1200px;
+
+
 
 
 
@@ -92,6 +96,13 @@ html,body {
     -webkit-box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22);
     -moz-box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22);
     box-shadow: 10px 10px 0px 0px rgba(50, 117, 99, 0.22);
+    @media screen and (max-width: $break-small) {
+     font-size: 0.5em;
+     }
+     @media screen and (min-width: $break-large) {
+      font-size: 1.3em;
+     }
+
   }
 }
 
