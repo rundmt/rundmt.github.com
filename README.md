@@ -12,3 +12,5 @@ TODO
 =====
 * Add more projects
 * Animations(?)
+* Add blog posts about career switching
+* Add blog post detailing the meteor twitter wit.ai control.
