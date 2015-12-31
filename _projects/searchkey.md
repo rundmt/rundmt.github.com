@@ -1,6 +1,6 @@
 ---
 layout: project
-title:  "Dope Beats"
+title:  "Search Key"
 categories: music hip-hip beats
 image: "https://cdn2.iconfinder.com/data/icons/social-media-8/512/Chrome.png"
 ---
