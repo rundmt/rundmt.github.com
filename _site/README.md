@@ -11,4 +11,7 @@ To make a minimal/unique personal webpage.
 TODO
 =====
 * Add more projects
+* Add wit ai twitter project
 * Animations(?)
+* Add blog posts about career switching
+* Add blog post detailing the meteor twitter wit.ai control.

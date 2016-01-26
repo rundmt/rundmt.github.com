@@ -550,6 +550,9 @@ html, body {
 .social-links #contact-github {
   color: black; }
 
+.social-links #contact-codepen {
+  color: white; }
+
 .home {
   margin: 0 auto;
   width: 100%; }
