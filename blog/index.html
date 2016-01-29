@@ -3,21 +3,20 @@ layout: default
 ---
 
 <div class="home">
+  <div class="header-project">
+    <h1>Posts</h1>
+  </div>
   <div class="wrapper">
-
-    <ul class="post-list">
+    <div class="projects">
       {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      <div class="project">
+        <h2 class="link-header">
+          <a class="post-link" href="{{ project.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
         <p>{{post.excerpt}}</p>
-      </li>
+      </div>
       {% endfor %}
-    </ul>
-
-    <p class="rss-subscribe">subscribe <a href="{{ " /feed.xml " | prepend: site.baseurl }}">via RSS</a></p>
+    </div>
   </div>
 </div>
