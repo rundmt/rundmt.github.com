@@ -6,9 +6,99 @@
 </description>
     <link>http://derektor.me/</link>
     <atom:link href="http://derektor.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2016 08:11:26 -0800</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2016 08:11:26 -0800</lastBuildDate>
-    <generator>Jekyll v3.1.0</generator>
+    <pubDate>Fri, 19 Feb 2016 19:21:03 -0800</pubDate>
+    <lastBuildDate>Fri, 19 Feb 2016 19:21:03 -0800</lastBuildDate>
+    <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Using Postman and Clarifai to tag photos</title>
+        <description>&lt;p&gt;I’m going to go through as basic introduction of two of my favorite things. One is a Postman a graphical API client, and the other is Clarifai a image and video tagging service that allow us to quickly get information on our content. If you prefer videos I’ve made one down below.&lt;/p&gt;
+
+&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/iJMxg-mcZXE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Google Chrome&lt;/li&gt;
+  &lt;li&gt;Postman&lt;/li&gt;
+  &lt;li&gt;Clarifai Account&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;what-is-clarifai&quot;&gt;What is Clarifai?&lt;/h2&gt;
+
+&lt;p&gt;Clarifai is a company that offers image tagging as a service. You send them an image or a link to an image and they give you back image tags.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-postman&quot;&gt;What is Postman?&lt;/h2&gt;
+
+&lt;p&gt;Postman is a tool that allows us to send requests to API services like Clarifai. It’s a very nice way to get up and running. The standard way of using CURL commands is hard and not very efficient. With Postman we get things like history, saved API calls, and a beautiful interface.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-setup&quot;&gt;The Setup&lt;/h2&gt;
+
+&lt;h3 id=&quot;clarifai&quot;&gt;Clarifai&lt;/h3&gt;
+
+&lt;p&gt;Navigate to &lt;a href=&quot;https://developer.clarifai.com/&quot;&gt;Clarifai’s developer portal&lt;/a&gt; and sign up. Once you’ve signed up we need to create an application. Go and click “Application” on the right hand side.
+You should see a page like this.&lt;/p&gt;
+
+&lt;p&gt;Click on “Create a new Application”. Go ahead and create an application. It doesn’t matter what you name it. Leave the other selections alone and click “Create Application.”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/SnW3lmf.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/NTo8rXH.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next go and click “Generate Access Token”. You should see some randomized letters show up next to it. That is your access token save it some place, or just don’t close your tab.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/H2GVjUP.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;postman&quot;&gt;Postman&lt;/h3&gt;
+
+&lt;p&gt;If you’ve ever used an API doc before you typically see something like this. In the black boxes those are what are known as CURL commands. CURL commands are commands to communicate with the web from your computers command line. CURL commands are great, but they are pretty daunting for somebody not used to the command line.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bKzI8l2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s why for this tutorial we’re going to use Postman. Postman is a tool for users to interact with APIs using a graphical interface. You can download Postman in the chrome store. &lt;a href=&quot;https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-ntp-icon&quot;&gt; Link&lt;/a&gt;. Go ahead and add it.&lt;/p&gt;
+
+&lt;p&gt;Now if you go to your Chrome apps you can see Postman. Go ahead and open it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/qgEEQRW.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-request&quot;&gt;The Request&lt;/h2&gt;
+
+&lt;p&gt;Alright Clarifai gives us two options for tagging photos, but we will use the basic POST request API. If you don’t know what the difference between a POST and GET request are, it is not a big deal. A POST request basically sends data outside of the URL and a GET sends data with the url.&lt;/p&gt;
+
+&lt;p&gt;So to the left of the url you will see something that says “GET”. Click it and select POST instead.&lt;/p&gt;
+
+&lt;p&gt;To set it up in Postman put in the url  https://api.clarifai.com/v1/tag/&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/rNvrsxc.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the headers tab place your authorization token like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/bPoArNF.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next click the body tag and put input url in the key and for the value put in a url to an image. We’ll use http://www.clarifai.com/img/metro-north.jpg&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/NY2rH0D.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All we have to do left is hit send. You should see a response in the box below with data.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/VcKv6ki.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Postman allows us to quickly test APIs in a very nice and quick manner. I personally use it for building and testing my own APIs. This tutorial is a quick one to get somebody up and running. I could see somebody using Postman along with Clarifai’s feedback API. Their feedback API allows for the correction of tags. I would much rather use a nice interface like Postman than CURL calls for tasks like that.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 10 Feb 2016 04:56:37 -0800</pubDate>
+        <link>http://derektor.me/clarifai/api/postman/2016/02/10/clarifai-postman.html</link>
+        <guid isPermaLink="true">http://derektor.me/clarifai/api/postman/2016/02/10/clarifai-postman.html</guid>
+        
+        
+        <category>clarifai</category>
+        
+        <category>api</category>
+        
+        <category>postman</category>
+        
+      </item>
     
       <item>
         <title>First Post</title>

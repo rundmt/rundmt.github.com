@@ -11,7 +11,7 @@ layout: default
       {% for post in site.posts %}
       <div class="project">
         <h2 class="link-header">
-          <a class="post-link" href="{{ project.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
         <p>{{post.excerpt}}</p>
