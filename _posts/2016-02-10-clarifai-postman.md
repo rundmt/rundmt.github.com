@@ -9,23 +9,23 @@ I'm going to go through as basic introduction of two of my favorite things. One 
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/iJMxg-mcZXE" frameborder="0" allowfullscreen></iframe>
 
-##Requirements
+## Requirements
 
 * Google Chrome
 * Postman
 * Clarifai Account
 
-##What is Clarifai?
+## What is Clarifai?
 
 Clarifai is a company that offers image tagging as a service. You send them an image or a link to an image and they give you back image tags. 
 
-##What is Postman?
+## What is Postman?
 
 Postman is a tool that allows us to send requests to API services like Clarifai. It's a very nice way to get up and running. The standard way of using CURL commands is hard and not very efficient. With Postman we get things like history, saved API calls, and a beautiful interface. 
 
-##The Setup
+## The Setup
 
-###Clarifai
+### Clarifai
 
 Navigate to [Clarifai's developer portal](https://developer.clarifai.com/) and sign up. Once you've signed up we need to create an application. Go and click "Application" on the right hand side.
 You should see a page like this.
@@ -40,7 +40,7 @@ Next go and click "Generate Access Token". You should see some randomized letter
 
 ![](http://i.imgur.com/H2GVjUP.png)
 
-###Postman
+### Postman
 
 If you've ever used an API doc before you typically see something like this. In the black boxes those are what are known as CURL commands. CURL commands are commands to communicate with the web from your computers command line. CURL commands are great, but they are pretty daunting for somebody not used to the command line.
 
@@ -52,7 +52,7 @@ Now if you go to your Chrome apps you can see Postman. Go ahead and open it.
 
 ![](https://i.imgur.com/qgEEQRW.png)
 
-##The Request
+## The Request
 
 Alright Clarifai gives us two options for tagging photos, but we will use the basic POST request API. If you don't know what the difference between a POST and GET request are, it is not a big deal. A POST request basically sends data outside of the URL and a GET sends data with the url.
 
@@ -75,6 +75,6 @@ All we have to do left is hit send. You should see a response in the box below w
 
 ![](http://i.imgur.com/VcKv6ki.png)
 
-##Conclusion
+## Conclusion
 
 Postman allows us to quickly test APIs in a very nice and quick manner. I personally use it for building and testing my own APIs. This tutorial is a quick one to get somebody up and running. I could see somebody using Postman along with Clarifai's feedback API. Their feedback API allows for the correction of tags. I would much rather use a nice interface like Postman than CURL calls for tasks like that.
