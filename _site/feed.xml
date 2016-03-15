@@ -6,9 +6,33 @@
 </description>
     <link>http://derektor.me/</link>
     <atom:link href="http://derektor.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Feb 2016 13:18:11 -0800</pubDate>
-    <lastBuildDate>Mon, 22 Feb 2016 13:18:11 -0800</lastBuildDate>
+    <pubDate>Tue, 15 Mar 2016 12:37:50 -0700</pubDate>
+    <lastBuildDate>Tue, 15 Mar 2016 12:37:50 -0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
+    
+      <item>
+        <title>Jquery attaching events document.on vs document.ready</title>
+        <description>&lt;p&gt;Jquery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attachements.&lt;/p&gt;
+
+&lt;p&gt;In Jquery doing a something simple like:&lt;/p&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;GZRxVN&quot; data-default-tab=&quot;js&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/GZRxVN/&quot;&gt;Jquery Event Example Not Working&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNoRMp&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/PNoRMp/&quot;&gt;Jquery Event Example Refactored&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 10 Feb 2016 04:56:37 -0800</pubDate>
+        <link>http://derektor.me/jquery/events/2016/02/10/jquery-document-on.html</link>
+        <guid isPermaLink="true">http://derektor.me/jquery/events/2016/02/10/jquery-document-on.html</guid>
+        
+        
+        <category>jquery</category>
+        
+        <category>events</category>
+        
+      </item>
     
       <item>
         <title>Using Postman and Clarifai to tag photos</title>
