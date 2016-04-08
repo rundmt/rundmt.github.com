@@ -5,7 +5,7 @@ date:   2016-04-7 9:45:00
 categories: jQuery events
 ---
 
-jQuery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attaching. I've experienced this first hand when I was a newbie, and I've experienced this when teaching others about jQuery.
+jQuery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attaching. I've experienced this first hand when I was new, and I've experienced this when teaching others about jQuery.
 
 ### Basic Form
 
@@ -39,7 +39,11 @@ This code above says add a click event listener to the `add-input` class. Howeve
 
 ### Dynamic Form (Callback Example)
 
-To fix problem we must attach our event listeners in the callback when we click the "+" button. So now every single time an input gets added it will also add `click()` event to it as well. Unfortunately this comes with it's own problems. Since we're adding an event for every input we add, we are also re-adding the event listeners for every button resulting in multiple events. To stop this we must add `$( ".add-input").unbind( "click" );`. This allows us to remove all previous events that were attached. This leaves us with a single click event for each input button.
+To fix problem we must attach our event listeners in the callback when we click the "+" button. So now every single time an input gets added it will also add `click()` event to it as well. Unfortunately this comes with it's own problems.
+
+Since we're adding an event for every input we add, we are also re-adding the event listeners for every button resulting in multiple events.
+
+To stop this we must add `$(".add-input").unbind( "click" );`. This allows us to remove all previous events that were attached. This leaves us with a single click event for each input button.
 
 <script src="https://gist.github.com/rundmt/d94551175e0b43c85dcd0faa47e4c535.js"></script>
 
@@ -47,15 +51,19 @@ To fix problem we must attach our event listeners in the callback when we click 
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 
-Our code for what should be a dynamic simple form has grown into as mess. It is complex to say the least with all of the adding and removing of events. Luckily there is a better way.
+Our code for what should be a simple dynamic form has grown into a mess. It is complex to say the least with all of the adding and removing of events. Imagine if we had a much more complex form, the code would leave us in [callback hell](http://callbackhell.com/). Luckily there is a better way.
 
 ### Dynamic Form ($(document).on Example)
 
-As of jQuery 1.7, we now have the `.on()` method. `on()` is a nifty function because it keeps track of the document even as we dynamically add inputs. With `on()` there is no need for adding complex callback code. We don't need to remove events only to add them back right after.
+As of jQuery 1.7, we now have the `.on()` method. `on()` is nifty, because it keeps track of the document even as we dynamically add inputs. With `on()` there is no need for adding complex callback code. We don't need to remove events only to add them back right after.
 
 <script src="https://gist.github.com/rundmt/c7f8ce31935a7655dedcf0b0aa75eeae.js"></script>
 
 <p data-height="268" data-theme-id="0" data-slug-hash="ONzxwN" data-default-tab="result" data-user="derektorq" class="codepen">See the Pen <a href="http://codepen.io/derektorq/pen/ONzxwN/">jQuery Event $(document).on Example</a> by Derek Tor (<a href="http://codepen.io/derektorq">@derektorq</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-We get the same result, but the resulting code is so much cleaner.
+We get the same result, but the resulting code is so much cleaner. No matter how many inputs we add, the code works without any problems.
+
+### Conclusion
+
+`$(document).ready()` is a great function to call when things the DOM is ready, but beginners can't rely on it for everything. `$(document).on()` is fantastic for adding event listeners, because it listens for any selector added on the document no matter when it is added.
