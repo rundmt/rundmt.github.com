@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>jQuery attaching events document.on vs document.ready</title>
+  <meta name="description" content="jQuery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attaching. I’ve exp...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://derektor.me/jquery/events/2016/02/10/jquery-document-on.html">
+  <link rel="alternate" type="application/rss+xml" title="Derek Tor Website" href="http://derektor.me/feed.xml" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+</head>
+
+
+<body>
+  <div class="wrapper" style="margin-top: 30px;">
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">jQuery attaching events document.on vs document.ready</h1>
+    <p class="post-meta">Feb 10, 2016</p>
+  </header>
+
+  <article class="post-content">
+    <p>jQuery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attaching. I’ve experienced this first hand when I was a newbie, and I’ve experienced this when teaching others about jQuery.</p>
+
+<h3 id="basic-form">Basic Form</h3>
+
+<p>When you first start learning jQuery, we learn to add events like this.</p>
+
+<script src="https://gist.github.com/rundmt/1e2014821f770977faf69f779b123e34.js"></script>
+
+<p>Notice how the event for <code class="highlighter-rouge">.add-input</code> is inside <code class="highlighter-rouge">document.ready()</code>. This means that once the document is ready we will attach a event click listener to <code class="highlighter-rouge">.add-input</code>.</p>
+
+<p data-height="268" data-theme-id="0" data-slug-hash="oxpGeJ" data-default-tab="result" data-user="derektorq" class="codepen">See the Pen <a href="http://codepen.io/derektorq/pen/oxpGeJ/">Jquery Event Example</a> by Derek Tor (<a href="http://codepen.io/derektorq">@derektorq</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>This code works fine in most cases, but what happens if an element is added after <code class="highlighter-rouge">document.ready()</code>.</p>
+
+<h3 id="dynamic-form-naive-example">Dynamic Form (Naive Example)</h3>
+
+<p>Let’s take a simple example of making a dynamic form. Say we’re making an app and we want to add inputs to our form.</p>
+
+<p>In the example below we have the basic form example from before, with and extra button. When the new “+” button is clicked it will append an input to the form creating a form with multiple inputs. However, the problem is the newly generated input buttons don’t work the same way as the first button.</p>
+
+<script src="https://gist.github.com/rundmt/2125be3eb95c983be6cea110087c4018.js"></script>
+
+<p data-height="268" data-theme-id="0" data-slug-hash="aNbYxx" data-default-tab="result" data-user="derektorq" class="codepen">See the Pen <a href="http://codepen.io/derektorq/pen/aNbYxx/">Jquery Event Example 1</a> by Derek Tor (<a href="http://codepen.io/derektorq">@derektorq</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Try clicking the “Add Input” button of a newly generated input, in the Codepen above.</p>
+
+<p>Here’s where things get tricky.</p>
+
+<p>This code above says add a click event listener to the <code class="highlighter-rouge">add-input</code> class. However since the new elements are added after the <code class="highlighter-rouge">$(document).ready()</code> the events for <code class="highlighter-rouge">$('.add-input').click()</code> never get called again after the first <code class="highlighter-rouge">ready()</code> event.</p>
+
+<h3 id="dynamic-form-callback-example">Dynamic Form (Callback Example)</h3>
+
+<p>To fix problem we must attach our event listeners in the callback when we click the “+” button. So now every single time an input gets added it will also add <code class="highlighter-rouge">click()</code> event to it as well. Unfortunately this comes with it’s own problems. Since we’re adding an event for every input we add, we are also re-adding the event listeners for every button resulting in multiple events. To stop this we must add <code class="highlighter-rouge">$( ".add-input").unbind( "click" );</code>. This allows us to remove all previous events that were attached. This leaves us with a single click event for each input button.</p>
+
+<script src="https://gist.github.com/rundmt/d94551175e0b43c85dcd0faa47e4c535.js"></script>
+
+<p data-height="268" data-theme-id="0" data-slug-hash="bpaoLe" data-default-tab="result" data-user="derektorq" class="codepen">See the Pen <a href="http://codepen.io/derektorq/pen/bpaoLe/">jQuery Event Callback Example</a> by Derek Tor (<a href="http://codepen.io/derektorq">@derektorq</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Our code for what should be a dynamic simple form has grown into as mess. It is complex to say the least with all of the adding and removing of events. Luckily there is a better way.</p>
+
+<h3 id="dynamic-form-documenton-example">Dynamic Form ($(document).on Example)</h3>
+
+<p>As of jQuery 1.7, we now have the <code class="highlighter-rouge">.on()</code> method. <code class="highlighter-rouge">on()</code> is a nifty function because it keeps track of the document even as we dynamically add inputs. With <code class="highlighter-rouge">on()</code> there is no need for adding complex callback code. We don’t need to remove events only to add them back right after.</p>
+
+<script src="https://gist.github.com/rundmt/c7f8ce31935a7655dedcf0b0aa75eeae.js"></script>
+
+<p data-height="268" data-theme-id="0" data-slug-hash="ONzxwN" data-default-tab="result" data-user="derektorq" class="codepen">See the Pen <a href="http://codepen.io/derektorq/pen/ONzxwN/">jQuery Event $(document).on Example</a> by Derek Tor (<a href="http://codepen.io/derektorq">@derektorq</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>We get the same result, but the resulting code is so much cleaner.</p>
+
+  </article>
+
+</div>
+</div>
+
+</body>
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-55126679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</html>

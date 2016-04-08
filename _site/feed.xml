@@ -6,29 +6,72 @@
 </description>
     <link>http://derektor.me/</link>
     <atom:link href="http://derektor.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 15 Mar 2016 12:37:50 -0700</pubDate>
-    <lastBuildDate>Tue, 15 Mar 2016 12:37:50 -0700</lastBuildDate>
+    <pubDate>Fri, 08 Apr 2016 09:48:43 -0700</pubDate>
+    <lastBuildDate>Fri, 08 Apr 2016 09:48:43 -0700</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
-        <title>Jquery attaching events document.on vs document.ready</title>
-        <description>&lt;p&gt;Jquery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attachements.&lt;/p&gt;
+        <title>jQuery attaching events document.on vs document.ready</title>
+        <description>&lt;p&gt;jQuery makes javascript very easy for beginners to grasp. However, there are a few things that can trip up newbies when it comes to event attaching. I’ve experienced this first hand when I was a newbie, and I’ve experienced this when teaching others about jQuery.&lt;/p&gt;
 
-&lt;p&gt;In Jquery doing a something simple like:&lt;/p&gt;
+&lt;h3 id=&quot;basic-form&quot;&gt;Basic Form&lt;/h3&gt;
 
-&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;GZRxVN&quot; data-default-tab=&quot;js&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/GZRxVN/&quot;&gt;Jquery Event Example Not Working&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you first start learning jQuery, we learn to add events like this.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/rundmt/1e2014821f770977faf69f779b123e34.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Notice how the event for &lt;code class=&quot;highlighter-rouge&quot;&gt;.add-input&lt;/code&gt; is inside &lt;code class=&quot;highlighter-rouge&quot;&gt;document.ready()&lt;/code&gt;. This means that once the document is ready we will attach a event click listener to &lt;code class=&quot;highlighter-rouge&quot;&gt;.add-input&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;oxpGeJ&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/oxpGeJ/&quot;&gt;Jquery Event Example&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 &lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 
-&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;PNoRMp&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/PNoRMp/&quot;&gt;Jquery Event Example Refactored&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This code works fine in most cases, but what happens if an element is added after &lt;code class=&quot;highlighter-rouge&quot;&gt;document.ready()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;dynamic-form-naive-example&quot;&gt;Dynamic Form (Naive Example)&lt;/h3&gt;
+
+&lt;p&gt;Let’s take a simple example of making a dynamic form. Say we’re making an app and we want to add inputs to our form.&lt;/p&gt;
+
+&lt;p&gt;In the example below we have the basic form example from before, with and extra button. When the new “+” button is clicked it will append an input to the form creating a form with multiple inputs. However, the problem is the newly generated input buttons don’t work the same way as the first button.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/rundmt/2125be3eb95c983be6cea110087c4018.js&quot;&gt;&lt;/script&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;aNbYxx&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/aNbYxx/&quot;&gt;Jquery Event Example 1&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 &lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 
+&lt;p&gt;Try clicking the “Add Input” button of a newly generated input, in the Codepen above.&lt;/p&gt;
+
+&lt;p&gt;Here’s where things get tricky.&lt;/p&gt;
+
+&lt;p&gt;This code above says add a click event listener to the &lt;code class=&quot;highlighter-rouge&quot;&gt;add-input&lt;/code&gt; class. However since the new elements are added after the &lt;code class=&quot;highlighter-rouge&quot;&gt;$(document).ready()&lt;/code&gt; the events for &lt;code class=&quot;highlighter-rouge&quot;&gt;$(&#39;.add-input&#39;).click()&lt;/code&gt; never get called again after the first &lt;code class=&quot;highlighter-rouge&quot;&gt;ready()&lt;/code&gt; event.&lt;/p&gt;
+
+&lt;h3 id=&quot;dynamic-form-callback-example&quot;&gt;Dynamic Form (Callback Example)&lt;/h3&gt;
+
+&lt;p&gt;To fix problem we must attach our event listeners in the callback when we click the “+” button. So now every single time an input gets added it will also add &lt;code class=&quot;highlighter-rouge&quot;&gt;click()&lt;/code&gt; event to it as well. Unfortunately this comes with it’s own problems. Since we’re adding an event for every input we add, we are also re-adding the event listeners for every button resulting in multiple events. To stop this we must add &lt;code class=&quot;highlighter-rouge&quot;&gt;$( &quot;.add-input&quot;).unbind( &quot;click&quot; );&lt;/code&gt;. This allows us to remove all previous events that were attached. This leaves us with a single click event for each input button.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/rundmt/d94551175e0b43c85dcd0faa47e4c535.js&quot;&gt;&lt;/script&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;bpaoLe&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/bpaoLe/&quot;&gt;jQuery Event Callback Example&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Our code for what should be a dynamic simple form has grown into as mess. It is complex to say the least with all of the adding and removing of events. Luckily there is a better way.&lt;/p&gt;
+
+&lt;h3 id=&quot;dynamic-form-documenton-example&quot;&gt;Dynamic Form ($(document).on Example)&lt;/h3&gt;
+
+&lt;p&gt;As of jQuery 1.7, we now have the &lt;code class=&quot;highlighter-rouge&quot;&gt;.on()&lt;/code&gt; method. &lt;code class=&quot;highlighter-rouge&quot;&gt;on()&lt;/code&gt; is a nifty function because it keeps track of the document even as we dynamically add inputs. With &lt;code class=&quot;highlighter-rouge&quot;&gt;on()&lt;/code&gt; there is no need for adding complex callback code. We don’t need to remove events only to add them back right after.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/rundmt/c7f8ce31935a7655dedcf0b0aa75eeae.js&quot;&gt;&lt;/script&gt;
+
+&lt;p data-height=&quot;268&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;ONzxwN&quot; data-default-tab=&quot;result&quot; data-user=&quot;derektorq&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/derektorq/pen/ONzxwN/&quot;&gt;jQuery Event $(document).on Example&lt;/a&gt; by Derek Tor (&lt;a href=&quot;http://codepen.io/derektorq&quot;&gt;@derektorq&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;We get the same result, but the resulting code is so much cleaner.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 10 Feb 2016 04:56:37 -0800</pubDate>
-        <link>http://derektor.me/jquery/events/2016/02/10/jquery-document-on.html</link>
-        <guid isPermaLink="true">http://derektor.me/jquery/events/2016/02/10/jquery-document-on.html</guid>
+        <pubDate>Thu, 07 Apr 2016 02:45:00 -0700</pubDate>
+        <link>http://derektor.me/jquery/events/2016/04/07/jquery-document-on.html</link>
+        <guid isPermaLink="true">http://derektor.me/jquery/events/2016/04/07/jquery-document-on.html</guid>
         
         
-        <category>jquery</category>
+        <category>jQuery</category>
         
         <category>events</category>
         
