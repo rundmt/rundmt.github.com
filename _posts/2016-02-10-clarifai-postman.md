@@ -17,11 +17,11 @@ I'm going to go through as basic introduction of two of my favorite things. One 
 
 ## What is Clarifai?
 
-Clarifai is a company that offers image tagging as a service. You send them an image or a link to an image and they give you back image tags. 
+Clarifai is a company that offers image tagging as a service. You send them an image or a link to an image and they give you back image tags.
 
 ## What is Postman?
 
-Postman is a tool that allows us to send requests to API services like Clarifai. It's a very nice way to get up and running. The standard way of using CURL commands is hard and not very efficient. With Postman we get things like history, saved API calls, and a beautiful interface. 
+Postman is a tool that allows us to send requests to API services like Clarifai. It's a very nice way to get up and running. The standard way of using cURL commands is hard and not very efficient. With Postman we get things like history, saved API calls, and a beautiful interface.
 
 ## The Setup
 
@@ -42,7 +42,7 @@ Next go and click "Generate Access Token". You should see some randomized letter
 
 ### Postman
 
-If you've ever used an API doc before you typically see something like this. In the black boxes those are what are known as CURL commands. CURL commands are commands to communicate with the web from your computers command line. CURL commands are great, but they are pretty daunting for somebody not used to the command line.
+If you've ever used an API doc before you typically see something like this. In the black boxes those are what are known as cURL commands. cURL commands are commands to communicate with the web from your computers command line. cURL commands are great, but they are pretty daunting for somebody not used to the command line.
 
 ![](https://i.imgur.com/bKzI8l2.png)
 
@@ -67,7 +67,7 @@ In the headers tab place your authorization token like this:
 
 ![](https://i.imgur.com/bPoArNF.png)
 
-Next click the body tag and put input url in the key and for the value put in a url to an image. We'll use http://www.clarifai.com/img/metro-north.jpg 
+Next click the body tag and put input url in the key and for the value put in a url to an image. We'll use http://www.clarifai.com/img/metro-north.jpg
 
 ![](http://i.imgur.com/NY2rH0D.png)
 
@@ -77,4 +77,4 @@ All we have to do left is hit send. You should see a response in the box below w
 
 ## Conclusion
 
-Postman allows us to quickly test APIs in a very nice and quick manner. I personally use it for building and testing my own APIs. This tutorial is a quick one to get somebody up and running. I could see somebody using Postman along with Clarifai's feedback API. Their feedback API allows for the correction of tags. I would much rather use a nice interface like Postman than CURL calls for tasks like that.
+Postman allows us to quickly test APIs in a very nice and quick manner. I personally use it for building and testing my own APIs. This tutorial is a quick one to get somebody up and running. I could see somebody using Postman along with Clarifai's feedback API. Their feedback API allows for the correction of tags. I would much rather use a nice interface like Postman than cURL calls for tasks like that.
