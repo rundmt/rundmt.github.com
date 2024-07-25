@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddhist Teachings Widget (Dark Mode)</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .container {
+            height: 100%;
+            width: 100%;
+            background-color: #191919;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        li {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        .teaching-title {
+            font-weight: 600;
+            color: #61dafb;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content" class="content"></div>
+    </div>
+
+    <script>
+        const teachings = [
+            {
+                title: "The Four Noble Truths",
+                items: [
+                    "<span class='teaching-title'>1. The truth of suffering (Dukkha):</span> Life inherently involves suffering, dissatisfaction, and stress. Recognize this truth in your daily experiences.",
+                    "<span class='teaching-title'>2. The origin of suffering (Samudāya):</span> Suffering arises from craving, attachment, and ignorance. Reflect on how your desires and aversions contribute to your discontent.",
+                    "<span class='teaching-title'>3. The cessation of suffering (Nirodha):</span> It is possible to end suffering by eliminating its causes. Contemplate the peace that comes from letting go.",
+                    "<span class='teaching-title'>4. The path to the cessation of suffering (Magga):</span> The Noble Eightfold Path leads to the end of suffering. Commit to following this path in your daily life."
+                ]
+            },
+            {
+                title: "The Noble Eightfold Path",
+                items: [
+                    "<span class='teaching-title'>1. Right Understanding:</span> Develop a clear comprehension of the Four Noble Truths and the nature of reality.",
+                    "<span class='teaching-title'>2. Right Intention:</span> Cultivate thoughts of goodwill, compassion, and renunciation of harmful desires.",
+                    "<span class='teaching-title'>3. Right Speech:</span> Speak truthfully, kindly, and avoid harsh or divisive language.",
+                    "<span class='teaching-title'>4. Right Action:</span> Act ethically, refraining from harming living beings, stealing, and sexual misconduct.",
+                    "<span class='teaching-title'>5. Right Livelihood:</span> Earn a living through ethical means that do not harm others.",
+                    "<span class='teaching-title'>6. Right Effort:</span> Cultivate wholesome mental states and abandon unwholesome ones.",
+                    "<span class='teaching-title'>7. Right Mindfulness:</span> Maintain awareness of your body, feelings, mind, and phenomena.",
+                    "<span class='teaching-title'>8. Right Concentration:</span> Develop mental focus and clarity through meditation practices."
+                ]
+            },
+            {
+                title: "The Five Remembrances",
+                items: [
+                    "<span class='teaching-title'>1. Aging:</span> I am of the nature to grow old. There is no way to escape growing old. Reflect on the impermanence of youth and the importance of using your time wisely.",
+                    "<span class='teaching-title'>2. Illness:</span> I am of the nature to have ill health. There is no way to escape ill health. Consider the fragility of health and the need to care for your body and mind.",
+                    "<span class='teaching-title'>3. Death:</span> I am of the nature to die. There is no way to escape death. Contemplate the certainty of death to prioritize what truly matters in life.",
+                    "<span class='teaching-title'>4. Change and Separation:</span> All that is dear to me and everyone I love are of the nature to change. There is no way to escape being separated from them. Reflect on the impermanence of relationships and possessions.",
+                    "<span class='teaching-title'>5. Karma:</span> My actions are my only true belongings. I cannot escape the consequences of my actions. They are the ground upon which I stand. Consider how your actions shape your present and future experiences."
+                ]
+            },
+            {
+                title: "The Four Brahmaviharas (Divine Abodes)",
+                items: [
+                    "<span class='teaching-title'>1. Loving-kindness (Metta):</span> Cultivate a genuine wish for the happiness and well-being of all beings, including yourself. Practice sending goodwill to others throughout your day.",
+                    "<span class='teaching-title'>2. Compassion (Karuna):</span> Develop the ability to empathize with others' suffering and the desire to alleviate it. Look for opportunities to offer support and kindness to those in need.",
+                    "<span class='teaching-title'>3. Sympathetic Joy (Mudita):</span> Cultivate the ability to rejoice in others' happiness and success. Practice feeling joy for others' good fortune, free from jealousy or resentment.",
+                    "<span class='teaching-title'>4. Equanimity (Upekkha):</span> Develop a balanced, even-minded acceptance of all experiences. Practice maintaining calm and composure in both pleasant and unpleasant situations."
+                ]
+            },
+            {
+                title: "The Three Marks of Existence",
+                items: [
+                    "<span class='teaching-title'>1. Impermanence (Anicca):</span> All conditioned phenomena are in a constant state of flux. Reflect on the changing nature of your experiences, thoughts, and feelings.",
+                    "<span class='teaching-title'>2. Unsatisfactoriness (Dukkha):</span> Clinging to impermanent things leads to suffering. Observe how attachment to fleeting experiences or objects creates stress and disappointment.",
+                    "<span class='teaching-title'>3. Non-self (Anatta):</span> There is no permanent, unchanging self separate from the constantly changing phenomena of experience. Contemplate the interdependent and fluid nature of your sense of self."
+                ]
+            }
+        ];
+
+        let currentTeachingIndex = 0;
+
+        function updateTeaching() {
+            const teaching = teachings[currentTeachingIndex];
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h1>${teaching.title}</h1>
+                <ul>
+                    ${teaching.items.map((item, index) => 
+                        `<li style="animation-delay: ${index * 0.1}s">${item}</li>`
+                    ).join('')}
+                </ul>
+            `;
+            currentTeachingIndex = (currentTeachingIndex + 1) % teachings.length;
+        }
+
+        updateTeaching();
+        setInterval(updateTeaching, 30000); // 30 seconds interval
+    </script>
+</body>
+</html>
