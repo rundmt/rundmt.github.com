@@ -17,6 +17,7 @@
             width: 100%;
             background-color: #191919;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow: hidden;
@@ -25,6 +26,10 @@
             text-align: center;
             padding: 2rem;
             max-width: 800px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         h1 {
             font-size: 1.8rem;
@@ -50,6 +55,35 @@
             font-weight: 600;
             color: #61dafb;
         }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        button {
+            background-color: #3a3a3a;
+            border: none;
+            color: #e0e0e0;
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover {
+            background-color: #4a4a4a;
+        }
+        button svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -69,6 +103,26 @@
 <body>
     <div class="container">
         <div id="content" class="content"></div>
+        <div class="controls">
+            <button id="prevBtn" aria-label="Previous teaching">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button id="pauseBtn" aria-label="Pause/Resume">
+                <svg id="pauseIcon" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <svg id="playIcon" viewBox="0 0 24 24" style="display: none;">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+            <button id="nextBtn" aria-label="Next teaching">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+        </div>
     </div>
 
     <script>
@@ -125,6 +179,8 @@
         ];
 
         let currentTeachingIndex = 0;
+        let intervalId;
+        let isPaused = false;
 
         function updateTeaching() {
             const teaching = teachings[currentTeachingIndex];
@@ -137,11 +193,39 @@
                     ).join('')}
                 </ul>
             `;
-            currentTeachingIndex = (currentTeachingIndex + 1) % teachings.length;
         }
 
+        function nextTeaching() {
+            currentTeachingIndex = (currentTeachingIndex + 1) % teachings.length;
+            updateTeaching();
+        }
+
+        function prevTeaching() {
+            currentTeachingIndex = (currentTeachingIndex - 1 + teachings.length) % teachings.length;
+            updateTeaching();
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseIcon = document.getElementById('pauseIcon');
+            const playIcon = document.getElementById('playIcon');
+            if (isPaused) {
+                clearInterval(intervalId);
+                pauseIcon.style.display = 'none';
+                playIcon.style.display = 'block';
+            } else {
+                intervalId = setInterval(nextTeaching, 30000);
+                pauseIcon.style.display = 'block';
+                playIcon.style.display = 'none';
+            }
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', nextTeaching);
+        document.getElementById('prevBtn').addEventListener('click', prevTeaching);
+        document.getElementById('pauseBtn').addEventListener('click', togglePause);
+
         updateTeaching();
-        setInterval(updateTeaching, 30000); // 30 seconds interval
+        intervalId = setInterval(nextTeaching, 30000);
     </script>
 </body>
 </html>
