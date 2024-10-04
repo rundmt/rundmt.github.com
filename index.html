@@ -4,91 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link rel="stylesheet" href="./main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>A Letter from Derek</title>
+    <style>
+      body {
+        background: hsla(173, 89%, 70%, 1);
+
+        background: linear-gradient(
+          90deg,
+          hsla(173, 89%, 70%, 1) 0%,
+          hsla(196, 68%, 38%, 1) 100%
+        );
+
+        background: -moz-linear-gradient(
+          90deg,
+          hsla(173, 89%, 70%, 1) 0%,
+          hsla(196, 68%, 38%, 1) 100%
+        );
+
+        background: -webkit-linear-gradient(
+          90deg,
+          hsla(173, 89%, 70%, 1) 0%,
+          hsla(196, 68%, 38%, 1) 100%
+        );
+      }
+    </style>
   </head>
-  <body>
-    <section class="main-section">
-      <div class="welcome">
-        Dear Reader <i class="fa-regular fa-hand-peace"></i>, <br /><br />
-        My name is Derek. I live and work in New York City. I am a software
-        engineer. In my spare time I enjoy making hip-hop beats. That's all I
-        got for now :) <br /><br />
-      </div>
-      <div>
-        <h1 class="connect-header">Links</h1>
-        <div class="social-links">
-          <div class="link-item">
-            <a
-              href="https://instagram.com/derektorq"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-brands fa-instagram instagram-logo"></i>
-              <span class="tooltip-content">Instagram</span>
-            </a>
-          </div>
-          <div class="link-item">
-            <a
-              href="https://twitter.com/derektorq"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-brands fa-twitter twitter-logo"></i>
-              <span class="tooltip-content">Twitter</span>
-            </a>
-          </div>
-          <div class="link-item">
-            <a
-              href="https://linkedin.com/in/derektor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-brands fa-linkedin linkedin-logo"></i>
-              <span class="tooltip-content">LinkedIn</span>
-            </a>
-          </div>
-          <div class="link-item">
-            <a
-              href="https://github.com/rundmt"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-brands fa-github github-logo"></i>
-              <span class="tooltip-content">Github</span>
-            </a>
-          </div>
-          <div class="link-item">
-            <a
-              href="https://soundcloud.com/derektorq"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-brands fa-soundcloud soundcloud-logo"></i>
-              <span class="tooltip-content">Soundcloud</span>
-            </a>
-          </div>
-          <div class="link-item">
-            <a
-              href="http://bit.ly/1NBwNFU"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="logo fa-regular fa-file-lines resume-logo"></i>
-              <span class="tooltip-content">Resume</span>
-            </a>
-          </div>
+  <body
+    class="min-h-screen font-['Merriweather', serif] text-gray-800 py-12 px-4"
+  >
+    <div class="max-w-3xl mx-auto p-8 sm:p-12 text-gray-100">
+      <main class="space-y-6 text-lg leading-relaxed">
+        <p class="text-2xl font-bold">
+          Hello <br /><br />
+          I'm Derek<br /><br />
+          I'm a software engineer<br /><br />
+          I currently pay rent in New York City<br /><br />
+          I sometimes I make beats and DJ<br /><br />
+          That's all I got for now<br /><br />
+        </p>
+        <p>
+          <i class="fa-regular fa-hand-peace fa-2xl"></i>
+        </p>
+      </main>
+
+      <footer class="mt-12 pt-6">
+        <div class="grid grid-cols-3 gap-6 sm:grid-cols-6">
+          <a
+            href="https://instagram.com/derektorq"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="fab fa-instagram text-2xl mb-2"></i>
+            <span class="text-xs">Instagram</span>
+          </a>
+          <a
+            href="https://twitter.com/derektorq"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="fab fa-twitter text-2xl mb-2"></i>
+            <span class="text-xs">Twitter</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/derektor"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="fab fa-linkedin text-2xl mb-2"></i>
+            <span class="text-xs">LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/rundmt"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="fab fa-github text-2xl mb-2"></i>
+            <span class="text-xs">Github</span>
+          </a>
+          <a
+            href="https://soundcloud.com/derektorq"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="fab fa-soundcloud text-2xl mb-2"></i>
+            <span class="text-xs">Soundcloud</span>
+          </a>
+          <a
+            href="http://bit.ly/1NBwNFU"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-white hover:text-gray-900"
+          >
+            <i class="far fa-file-lines text-2xl mb-2"></i>
+            <span class="text-xs">Resume</span>
+          </a>
         </div>
-      </div>
-    </section>
+      </footer>
+    </div>
   </body>
 </html>
